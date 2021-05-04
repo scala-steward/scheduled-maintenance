@@ -1,0 +1,13 @@
+stages:
+  build:
+    nodeLabel: nvm-sbt
+    steps:
+      - |
+        set +x
+        . ${NVM_DIR}/nvm.sh --no-use
+        nvm install
+        set -x
+        npm install
+        sbt test
+    filesToStash:
+      - '**'
