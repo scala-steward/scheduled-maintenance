@@ -21,4 +21,4 @@ functions:
       KEY: value
     events:
       - http:
-          url: hydragents.xyz
+          url: ${env:FQDN}

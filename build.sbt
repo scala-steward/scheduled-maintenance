@@ -2,7 +2,7 @@ inThisBuild(List(
   organization := "com.dwolla",
   description := "Cloudflare worker to return 503s from API endpoints during scheduled maintenance",
   homepage := Some(url("https://github.com/Dwolla/scheduled-maintenance")),
-  licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
+  licenses += ("MIT", url("https://opensource.org/licenses/MIT")),
   scalaVersion := "2.13.5",
   developers := List(
     Developer(
@@ -67,9 +67,12 @@ lazy val deploy = taskKey[Int]("deploy to Cloudflare")
 deploy := Def.task {
   import scala.sys.process._
 
-  Process(
+  val exitCode = Process(
     serverlessDeployCommand.value,
     Option((`scheduled-maintenance-root` / baseDirectory).value),
-    "ARTIFACT_PATH" -> (`scheduled-maintenance` / Compile / fullOptJS).value.toString,
+    "ARTIFACT_PATH" -> (`scheduled-maintenance` / Compile / fullOptJS).value.data.toString,
   ).!
+
+  if (exitCode == 0) exitCode
+  else throw new IllegalStateException("Serverless returned a non-zero exit code. Please check the logs for more information.")
 }.value

@@ -3,3 +3,5 @@
 target/
 project/project/
 .serverless/
+node_modules/
+package-lock.json
