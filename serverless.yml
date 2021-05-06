@@ -21,4 +21,4 @@ functions:
       KEY: value
     events:
       - http:
-          url: ${env:FQDN}
+          url: ${env:CLOUDFLARE_WORKER_ROUTE}
