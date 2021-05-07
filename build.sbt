@@ -47,7 +47,7 @@ lazy val `scheduled-maintenance` = (project in file("core"))
     scalaVersion := "2.13.5",
     libraryDependencies ++= {
       Seq(
-        "org.scala-js" %%% "scalajs-dom" % "1.0.0",
+        "org.scala-js" %%% "scalajs-dom" % "1.1.0",
         "io.circe" %%% "circe-literal" % "0.13.0",
         "dev.holt" %%% "java-time-literals" % "1.0.0-RC2",
         "io.github.cquiroz" %%% "scala-java-time" % "2.2.2",
