@@ -24,7 +24,7 @@ stages:
         nvm install
         set -x
         npm install -g serverless serverless-cloudflare-workers
-        export CLOUDFLARE_WORKER_ROUTE='fisync.dwolla.com/test-worker'
+        export CLOUDFLARE_WORKER_ROUTE='fisync.dwolla.com'
         sbt deploy
 additionalJobs:
   - name: End Scheduled Maintenance
