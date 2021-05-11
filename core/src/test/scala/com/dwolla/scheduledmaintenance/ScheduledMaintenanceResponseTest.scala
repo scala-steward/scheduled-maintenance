@@ -37,7 +37,7 @@ class ScheduledMaintenanceResponseTest extends munit.FunSuite with FetchPolyfill
   }
 
   test("the response should contain an appropriate Retry-After header") {
-    val expected = offsetDateTime"""2021-05-10T23:00:00-05:00""".toInstant
+    val expected = offsetDateTime"""2021-05-16T00:00:00-05:00""".toInstant
 
     val output = Main.handleRequest(defaultRequest)
 

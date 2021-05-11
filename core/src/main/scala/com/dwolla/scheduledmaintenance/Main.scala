@@ -56,6 +56,6 @@ object Main {
         _statusText = "Service Unavailable (scheduled maintenance)",
         _headers = js.Dictionary(
           "content-type" -> contentType,
-          "Retry-After" -> formatForHttpHeader(offsetDateTime"""2021-05-10T23:00:00-05:00"""),
+          "Retry-After" -> formatForHttpHeader(offsetDateTime"""2021-05-16T00:00:00-05:00"""),
         )))
 }
