@@ -17,8 +17,8 @@ functions:
   scheduled-maintenance:
     name: scheduled-maintenance
     script: ${env:ARTIFACT_PATH}
-    environment:
-      KEY: value
     events:
       - http:
-          url: ${env:CLOUDFLARE_WORKER_ROUTE}
+          url: hydragents.xyz/test1
+      - http:
+          url: hydragents.xyz/test2
