@@ -24,7 +24,6 @@ stages:
         nvm install
         set -x
         npm install -g serverless serverless-cloudflare-workers
-        export CLOUDFLARE_WORKER_ROUTE='api-sandbox.dwolla.com/*'
         sbt deploy
 additionalJobs:
   - name: End Scheduled Maintenance
