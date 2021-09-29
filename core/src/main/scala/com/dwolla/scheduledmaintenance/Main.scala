@@ -20,13 +20,8 @@ object Main {
   private def formatForHttpHeader(odt: OffsetDateTime): String =
     odt.toInstant.atOffset(ZoneOffset.UTC).format(DateTimeFormatter.RFC_1123_DATE_TIME)
 
-  private[scheduledmaintenance] def handleRequest(req: Request): Response = {
-    val accept: js.UndefOr[ByteString] = req.headers.get("Accept").flatMap {
-      case null => js.undefined
-      case other => other
-    }
-
-    if(accept.exists(_.contains("text/html")))
+  private[scheduledmaintenance] def handleRequest(req: Request): Response =
+    if (Option(req.headers.get("Accept")).exists(_.contains("text/html")))
       buildResponse("text/html",
         """<!doctype html>
           |<html lang="en-US">
@@ -143,7 +138,6 @@ object Main {
                  "code": "ScheduledMaintenance",
                  "message": "Services are temporarily unavailable while we perform scheduled maintenance"
                }""".noSpaces)
-  }
 
   private def buildResponse(contentType: String, body: String): Response =
     new Response(
