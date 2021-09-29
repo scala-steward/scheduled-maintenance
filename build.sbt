@@ -50,7 +50,7 @@ lazy val `scheduled-maintenance` = (project in file("core"))
       Seq(
         "org.scala-js" %%% "scalajs-dom" % "1.1.0",
         "io.circe" %%% "circe-literal" % circeV,
-        "dev.holt" %%% "java-time-literals" % "1.0.0",
+        "dev.holt" %%% "java-time-literals" % "1.1.0",
         "io.github.cquiroz" %%% "scala-java-time" % "2.3.0",
         "org.typelevel" %% "jawn-parser" % "1.0.0" % Compile,
         "org.scalameta" %%% "munit" % "0.7.25" % Test,
