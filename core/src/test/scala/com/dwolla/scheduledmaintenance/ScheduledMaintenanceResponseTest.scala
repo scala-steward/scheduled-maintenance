@@ -42,11 +42,10 @@ class ScheduledMaintenanceResponseTest extends munit.FunSuite with FetchPolyfill
     val output = Main.handleRequest(defaultRequest)
 
     val actual: Instant =
-      output.headers
-        .get("Retry-After")
+      Option(output.headers.get("Retry-After"))
         .map(DateTimeFormatter.RFC_1123_DATE_TIME.parse)
         .map(Instant.from)
-        .get
+        .orNull
 
     assert(expected == actual)
   }
@@ -62,6 +61,6 @@ class ScheduledMaintenanceResponseTest extends munit.FunSuite with FetchPolyfill
     val output = Main.handleRequest(req)
 
     assert(output.status == 503)
-    assert(output.headers.get("Content-type").get == "text/html")
+    assert(output.headers.get("Content-type") == "text/html")
   }
 }
