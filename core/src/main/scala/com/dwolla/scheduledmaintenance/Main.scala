@@ -2,8 +2,7 @@ package com.dwolla.scheduledmaintenance
 
 import dev.holt.javatime.literals.offsetDateTime
 import io.circe.literal._
-import org.scalajs.dom.experimental._
-import org.scalajs.dom.experimental.serviceworkers.FetchEvent
+import org.scalajs.dom.{ByteString, FetchEvent, HeadersInit, Request, Response, ResponseInit}
 import stubs.Globals
 
 import java.time.format.DateTimeFormatter
@@ -142,11 +141,13 @@ object Main {
   private def buildResponse(contentType: String, body: String): Response =
     new Response(
       body,
-      ResponseInit(
-        _status = 503,
-        _statusText = "Service Unavailable (scheduled maintenance)",
-        _headers = js.Dictionary(
+      new ResponseInit {
+        override var status: Int = 503
+        override var statusText: ByteString = "Service Unavailable (scheduled maintenance)"
+        override var headers: HeadersInit = js.Dictionary(
           "content-type" -> contentType,
           "Retry-After" -> formatForHttpHeader(offsetDateTime"""2021-05-16T00:00:00-05:00"""),
-        )))
+        )
+      }
+    )
 }
