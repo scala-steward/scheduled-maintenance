@@ -3,7 +3,7 @@ package com.dwolla.scheduledmaintenance
 import dev.holt.javatime.literals._
 import io.circe.literal._
 import io.circe.parser.parse
-import org.scalajs.dom.experimental._
+import org.scalajs.dom.{Headers, HttpMethod, Request, RequestInit}
 
 import java.time.Instant
 import java.time.format.DateTimeFormatter
