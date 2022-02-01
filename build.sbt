@@ -1,30 +1,27 @@
-inThisBuild(List(
-  organization := "com.dwolla",
-  description := "Cloudflare worker to return 503s from API endpoints during scheduled maintenance",
-  homepage := Some(url("https://github.com/Dwolla/scheduled-maintenance")),
-  licenses += ("MIT", url("https://opensource.org/licenses/MIT")),
-  scalaVersion := "2.13.8",
-  developers := List(
-    Developer(
-      "bpholt",
-      "Brian Holt",
-      "bholt+scheduled-maintenance@dwolla.com",
-      url("https://dwolla.com")
-    ),
-    Developer(
-      "benpjackson",
-      "Ben Jackson",
-      "bjackson+scheduled-maintenance@dwolla.com",
-      url("https://dwolla.com")
-    ),
+ThisBuild / organization := "com.dwolla"
+ThisBuild / homepage := Some(url("https://github.com/Dwolla/scheduled-maintenance"))
+ThisBuild / licenses += ("MIT", url("https://opensource.org/licenses/MIT"))
+ThisBuild / scalaVersion := "2.13.8"
+ThisBuild / developers := List(
+  Developer(
+    "bpholt",
+    "Brian Holt",
+    "bholt+scheduled-maintenance@dwolla.com",
+    url("https://dwolla.com")
   ),
-  startYear := Option(2021),
+  Developer(
+    "benpjackson",
+    "Ben Jackson",
+    "bjackson+scheduled-maintenance@dwolla.com",
+    url("https://dwolla.com")
+  ),
+)
+ThisBuild / startYear := Option(2021)
 
-  githubWorkflowJavaVersions := Seq("adopt@1.8", "adopt@1.11"),
-  githubWorkflowTargetTags ++= Seq("v*"),
-  githubWorkflowPublishTargetBranches := Seq.empty,
-  githubWorkflowPublish := Seq.empty,
-))
+ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec.temurin("8"), JavaSpec.temurin("11"))
+ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
+ThisBuild / githubWorkflowPublishTargetBranches := Seq.empty
+ThisBuild / githubWorkflowPublish := Seq.empty
 
 lazy val `scalajs-stubs` = (project in file("stubs"))
   .settings(
@@ -44,7 +41,7 @@ lazy val `scalajs-stubs` = (project in file("stubs"))
 
 lazy val `scheduled-maintenance` = (project in file("core"))
   .settings(
-    scalaVersion := "2.13.8",
+    description := "Cloudflare worker to return 503s from API endpoints during scheduled maintenance",
     libraryDependencies ++= {
       val circeV = "0.14.1"
       Seq(
